@@ -1,3 +1,4 @@
+import 'dotenv/config'; // ← Agrega esto al inicio de tu archivo de entrada (main.ts) o aquí mismo
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '../generated/prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
@@ -5,11 +6,10 @@ import { PrismaPg } from '@prisma/adapter-pg';
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
   constructor() {
-    // El adaptador crea el pool automáticamente
     const adapter = new PrismaPg({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: process.env.DATABASE_URL as string,
     });
-    
+
     super({ adapter });
   }
 

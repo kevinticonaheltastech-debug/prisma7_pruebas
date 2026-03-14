@@ -28,16 +28,19 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   id: number | null
+  age: number | null
 }
 
 export type UserSumAggregateOutputType = {
   id: number | null
+  age: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id: number | null
   email: string | null
   nombre: string | null
+  age: number | null
   esActivo: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -47,6 +50,7 @@ export type UserMaxAggregateOutputType = {
   id: number | null
   email: string | null
   nombre: string | null
+  age: number | null
   esActivo: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -56,6 +60,7 @@ export type UserCountAggregateOutputType = {
   id: number
   email: number
   nombre: number
+  age: number
   esActivo: number
   createdAt: number
   updatedAt: number
@@ -65,16 +70,19 @@ export type UserCountAggregateOutputType = {
 
 export type UserAvgAggregateInputType = {
   id?: true
+  age?: true
 }
 
 export type UserSumAggregateInputType = {
   id?: true
+  age?: true
 }
 
 export type UserMinAggregateInputType = {
   id?: true
   email?: true
   nombre?: true
+  age?: true
   esActivo?: true
   createdAt?: true
   updatedAt?: true
@@ -84,6 +92,7 @@ export type UserMaxAggregateInputType = {
   id?: true
   email?: true
   nombre?: true
+  age?: true
   esActivo?: true
   createdAt?: true
   updatedAt?: true
@@ -93,6 +102,7 @@ export type UserCountAggregateInputType = {
   id?: true
   email?: true
   nombre?: true
+  age?: true
   esActivo?: true
   createdAt?: true
   updatedAt?: true
@@ -189,6 +199,7 @@ export type UserGroupByOutputType = {
   id: number
   email: string
   nombre: string | null
+  age: number | null
   esActivo: boolean
   createdAt: Date
   updatedAt: Date
@@ -221,6 +232,7 @@ export type UserWhereInput = {
   id?: Prisma.IntFilter<"User"> | number
   email?: Prisma.StringFilter<"User"> | string
   nombre?: Prisma.StringNullableFilter<"User"> | string | null
+  age?: Prisma.IntNullableFilter<"User"> | number | null
   esActivo?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -230,6 +242,7 @@ export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   nombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  age?: Prisma.SortOrderInput | Prisma.SortOrder
   esActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -242,6 +255,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   nombre?: Prisma.StringNullableFilter<"User"> | string | null
+  age?: Prisma.IntNullableFilter<"User"> | number | null
   esActivo?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -251,6 +265,7 @@ export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   nombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  age?: Prisma.SortOrderInput | Prisma.SortOrder
   esActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -268,6 +283,7 @@ export type UserScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"User"> | number
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   nombre?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  age?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
   esActivo?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -276,6 +292,7 @@ export type UserScalarWhereWithAggregatesInput = {
 export type UserCreateInput = {
   email: string
   nombre?: string | null
+  age?: number | null
   esActivo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -285,6 +302,7 @@ export type UserUncheckedCreateInput = {
   id?: number
   email: string
   nombre?: string | null
+  age?: number | null
   esActivo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -293,6 +311,7 @@ export type UserUncheckedCreateInput = {
 export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   esActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -302,6 +321,7 @@ export type UserUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   esActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -311,6 +331,7 @@ export type UserCreateManyInput = {
   id?: number
   email: string
   nombre?: string | null
+  age?: number | null
   esActivo?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -319,6 +340,7 @@ export type UserCreateManyInput = {
 export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   esActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -328,6 +350,7 @@ export type UserUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  age?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   esActivo?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -337,6 +360,7 @@ export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   esActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -344,12 +368,14 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  age?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   esActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -359,6 +385,7 @@ export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  age?: Prisma.SortOrder
   esActivo?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -366,6 +393,7 @@ export type UserMinOrderByAggregateInput = {
 
 export type UserSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  age?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -374,6 +402,14 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -398,6 +434,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   email?: boolean
   nombre?: boolean
+  age?: boolean
   esActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -407,6 +444,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   email?: boolean
   nombre?: boolean
+  age?: boolean
   esActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -416,6 +454,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   email?: boolean
   nombre?: boolean
+  age?: boolean
   esActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -425,12 +464,13 @@ export type UserSelectScalar = {
   id?: boolean
   email?: boolean
   nombre?: boolean
+  age?: boolean
   esActivo?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "nombre" | "esActivo" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "nombre" | "age" | "esActivo" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
@@ -439,6 +479,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: number
     email: string
     nombre: string | null
+    age: number | null
     esActivo: boolean
     createdAt: Date
     updatedAt: Date
@@ -868,6 +909,7 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'Int'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly nombre: Prisma.FieldRef<"User", 'String'>
+  readonly age: Prisma.FieldRef<"User", 'Int'>
   readonly esActivo: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
