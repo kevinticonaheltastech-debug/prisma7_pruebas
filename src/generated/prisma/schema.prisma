@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+// prisma/schema.prisma
+// prisma/schema.prisma
+generator client {
+  provider     = "prisma-client-js"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model usuarios {
+  id_usuario     Int     @id @default(autoincrement())
+  nombre_usuario String
+  email          String? @unique
+  contraseña    String
+  rol            String
+
+  // Relaciones
+  proyectos proyectos[]
+  tareas    tareas[]
+
+  @@map("usuarios")
+}
+
+model proyectos {
+  id_proyecto     Int     @id @default(autoincrement())
+  nombre_proyecto String
+  descripcion     String?
+  estado          String
+  id_usuario      Int
+
+  // Relaciones
+  usuario usuarios @relation(fields: [id_usuario], references: [id_usuario])
+  tareas  tareas[]
+
+  @@map("proyectos")
+}
+
+model tareas {
+  id_tarea    Int     @id @default(autoincrement())
+  titulo      String
+  descripcion String?
+  estado      String
+  prioridad   String
+  id_proyecto Int
+  id_usuario  Int
+
+  // Relaciones
+  proyecto proyectos @relation(fields: [id_proyecto], references: [id_proyecto])
+  usuario  usuarios  @relation(fields: [id_usuario], references: [id_usuario])
+
+  @@map("tareas")
+}

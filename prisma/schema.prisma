@@ -3,6 +3,8 @@
 
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
+// prisma/schema.prisma
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -13,12 +15,46 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  nombre    String?
-  age       Int?          
-  esActivo  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model usuarios {
+  id_usuario     Int        @id @default(autoincrement())
+  nombre_usuario String
+  email          String?    @unique
+  contraseña     String
+  rol            String
+
+  // Relaciones
+  proyectos      proyectos[]
+  tareas         tareas[]
+
+  @@map("usuarios")
+}
+
+model proyectos {
+  id_proyecto     Int        @id @default(autoincrement())
+  nombre_proyecto String
+  descripcion     String?
+  estado          String
+  id_usuario      Int
+
+  // Relaciones
+  usuario         usuarios   @relation(fields: [id_usuario], references: [id_usuario])
+  tareas          tareas[]
+
+  @@map("proyectos")
+}
+
+model tareas {
+  id_tarea        Int        @id @default(autoincrement())
+  titulo          String
+  descripcion     String?
+  estado          String
+  prioridad       String
+  id_proyecto     Int
+  id_usuario      Int
+
+  // Relaciones
+  proyecto        proyectos  @relation(fields: [id_proyecto], references: [id_proyecto])
+  usuario         usuarios   @relation(fields: [id_usuario], references: [id_usuario])
+
+  @@map("tareas")
 }

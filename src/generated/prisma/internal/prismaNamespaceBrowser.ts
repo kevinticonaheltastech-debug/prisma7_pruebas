@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  usuarios: 'usuarios',
+  proyectos: 'proyectos',
+  tareas: 'tareas'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,17 +72,39 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
-  id: 'id',
+export const UsuariosScalarFieldEnum = {
+  id_usuario: 'id_usuario',
+  nombre_usuario: 'nombre_usuario',
   email: 'email',
-  nombre: 'nombre',
-  age: 'age',
-  esActivo: 'esActivo',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  contraseña: 'contraseña',
+  rol: 'rol'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type UsuariosScalarFieldEnum = (typeof UsuariosScalarFieldEnum)[keyof typeof UsuariosScalarFieldEnum]
+
+
+export const ProyectosScalarFieldEnum = {
+  id_proyecto: 'id_proyecto',
+  nombre_proyecto: 'nombre_proyecto',
+  descripcion: 'descripcion',
+  estado: 'estado',
+  id_usuario: 'id_usuario'
+} as const
+
+export type ProyectosScalarFieldEnum = (typeof ProyectosScalarFieldEnum)[keyof typeof ProyectosScalarFieldEnum]
+
+
+export const TareasScalarFieldEnum = {
+  id_tarea: 'id_tarea',
+  titulo: 'titulo',
+  descripcion: 'descripcion',
+  estado: 'estado',
+  prioridad: 'prioridad',
+  id_proyecto: 'id_proyecto',
+  id_usuario: 'id_usuario'
+} as const
+
+export type TareasScalarFieldEnum = (typeof TareasScalarFieldEnum)[keyof typeof TareasScalarFieldEnum]
 
 
 export const SortOrder = {
