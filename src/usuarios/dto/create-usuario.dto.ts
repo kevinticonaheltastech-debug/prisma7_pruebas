@@ -1,6 +1,13 @@
 import { IsString, IsEmail, MinLength, MaxLength, Matches, IsOptional, IsIn } from 'class-validator';
-
+import { ApiProperty } from '@nestjs/swagger';
 export class CreateUsuarioDto {
+
+    @ApiProperty({
+    example: 'Juan Pérez',
+    description: 'Nombre completo del usuario',
+    minLength: 3,
+    maxLength: 50
+})
     @IsString({ message: 'El nombre debe ser texto' })
     @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
     @MaxLength(50, { message: 'El nombre no puede exceder 50 caracteres' })
@@ -9,9 +16,23 @@ export class CreateUsuarioDto {
 })
     nombre_usuario: string;
 
+
+    @ApiProperty({
+    example: 'juan@example.com',
+    description: 'Correo electrónico del usuario',
+    uniqueItems: true
+  })
     @IsEmail({}, { message: 'El email no tiene formato válido' })
     email: string;
 
+
+    @ApiProperty({
+    example: 'Abc123456',
+    description: 'Contraseña (mínimo 8 caracteres, mayúscula, minúscula y número)',
+    minLength: 8,
+    maxLength: 20,
+    writeOnly: true
+  })
     @IsString({ message: 'La contraseña debe ser texto' })
     @MinLength(8, { message: 'La contraseña debe tener al menos 8 caracteres' })
     @MaxLength(20, { message: 'La contraseña no puede exceder 20 caracteres' })
@@ -20,9 +41,16 @@ export class CreateUsuarioDto {
 })
     contraseña: string;
 
+    @ApiProperty({
+    example: 'admin',
+    description: 'Rol del usuario',
+    enum: ['admin', 'usuario', 'gerente', 'supervisor']
+  })
     @IsString({ message: 'El rol debe ser texto' })
     @IsIn(['admin', 'user'], { 
     message: 'Rol debe ser: admin o user.' 
 })
+
+
 rol: string;
 }
