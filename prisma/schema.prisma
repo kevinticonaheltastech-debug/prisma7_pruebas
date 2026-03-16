@@ -15,12 +15,17 @@ datasource db {
   provider = "postgresql"
 }
 
+enum RolUsusario {
+  ADMIN
+  USUARIO
+}
+
 model usuarios {
   id_usuario     Int        @id @default(autoincrement())
   nombre_usuario String
   email          String?    @unique
   contraseña     String
-  rol            String
+  rol            RolUsusario
 
   // Relaciones
   proyectos      proyectos[]
@@ -28,27 +33,39 @@ model usuarios {
 
   @@map("usuarios")
 }
+enum EstadoProyecto {
+  ACTIVO
+  COMPLETO
+  ARCHIVADO
+}
 
 model proyectos {
   id_proyecto     Int        @id @default(autoincrement())
   nombre_proyecto String
   descripcion     String?
-  estado          String
+  estado          EstadoProyecto
   id_usuario      Int
 
-  // Relaciones
   usuario         usuarios   @relation(fields: [id_usuario], references: [id_usuario])
   tareas          tareas[]
 
   @@map("proyectos")
 }
 
+enum Prioridad {
+  BAJA
+  MEDIA
+  ALTA
+}
+
+
+
 model tareas {
   id_tarea        Int        @id @default(autoincrement())
   titulo          String
   descripcion     String?
-  estado          String
-  prioridad       String
+  estado          EstadoTarea
+  prioridad       Prioridad
   id_proyecto     Int
   id_usuario      Int
 
@@ -56,5 +73,13 @@ model tareas {
   proyecto        proyectos  @relation(fields: [id_proyecto], references: [id_proyecto])
   usuario         usuarios   @relation(fields: [id_usuario], references: [id_usuario])
 
+
+  
+
   @@map("tareas")
+}
+enum EstadoTarea {
+    PENDIENTE
+    EN_PROCESO
+    COMPLETADA
 }

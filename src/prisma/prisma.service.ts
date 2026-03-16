@@ -1,4 +1,4 @@
-import 'dotenv/config'; // ← Agrega esto al inicio de tu archivo de entrada (main.ts) o aquí mismo
+import 'dotenv/config'; 
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '../generated/prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';

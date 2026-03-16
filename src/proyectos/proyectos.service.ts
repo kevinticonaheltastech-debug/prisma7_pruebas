@@ -8,7 +8,7 @@ export class ProyectosService {
   constructor(private prisma: PrismaService) {}
 
   async create(createProyectoDto: CreateProyectoDto) {
-    // Verificar que el usuario existe
+    
     const usuario = await this.prisma.usuarios.findUnique({
       where: { id_usuario: createProyectoDto.id_usuario },
     });
@@ -20,7 +20,7 @@ export class ProyectosService {
     return this.prisma.proyectos.create({
       data: createProyectoDto,
       include: {
-        usuario: true,  // Incluye datos del dueño
+        usuario: true,
       },
     });
   }
@@ -41,7 +41,7 @@ export class ProyectosService {
         usuario: true,
         tareas: {
           include: {
-            usuario: true,  // Incluye usuario asignado a cada tarea
+            usuario: true,  
           },
         },
       },
@@ -77,9 +77,9 @@ export class ProyectosService {
   }
 
   async remove(id: number) {
-    await this.findOne(id); // Verifica que existe
+    await this.findOne(id); 
 
-    // Primero eliminar las tareas del proyecto (por la FK)
+  
     await this.prisma.tareas.deleteMany({
       where: { id_proyecto: id },
     });
@@ -89,7 +89,6 @@ export class ProyectosService {
     });
   }
 
-  // Métodos adicionales útiles
   async findTareas(id: number) {
     const proyecto = await this.findOne(id);
     return this.prisma.tareas.findMany({

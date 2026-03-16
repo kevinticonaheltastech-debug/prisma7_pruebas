@@ -1,5 +1,7 @@
-import { IsString, MinLength, MaxLength, IsOptional, IsIn, IsInt, Min } from 'class-validator';
+import { IsString, MinLength, MaxLength, IsOptional, IsIn, IsInt, Min, IsEnum, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { EstadoProyecto } from '../../enums/estados.enum';
+import { NOMBRE_REGEX ,MENSAJES_VALIDACION} from '../../common/constants/regex.constants';
 
 export class CreateProyectoDto {
   
@@ -13,6 +15,7 @@ export class CreateProyectoDto {
   @IsString({ message: 'El nombre del proyecto debe ser texto' })
   @MinLength(3, { message: 'El nombre del proyecto debe tener al menos 3 caracteres' })
   @MaxLength(100, { message: 'El nombre del proyecto no puede exceder 100 caracteres' })
+  @Matches(NOMBRE_REGEX, { message: MENSAJES_VALIDACION.NOMBRE_SIN_ESPECIALES })  
   nombre_proyecto: string;
 
 
@@ -29,15 +32,9 @@ export class CreateProyectoDto {
 
 
 
-  @ApiProperty({
-    example: 'activo',
-    description: 'Estado del proyecto',
-    enum: ['activo', 'completado', 'archivado']
-  })
+  @ApiProperty({ example: 'activo',description: 'Estado del proyecto',enum: EstadoProyecto})
   @IsString({ message: 'El estado debe ser texto' })
-  @IsIn(['activo', 'completo', 'archivado'], { 
-    message: 'El estado del proyecto debe ser: activo, completo o archivado' 
-  })
+  @IsEnum(EstadoProyecto, { message: 'El estado del proyecto debe ser: activo, completo o archivado' }) 
   estado: string;
 
 

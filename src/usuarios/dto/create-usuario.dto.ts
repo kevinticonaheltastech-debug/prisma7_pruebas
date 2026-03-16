@@ -1,5 +1,7 @@
-import { IsString, IsEmail, MinLength, MaxLength, Matches, IsOptional, IsIn } from 'class-validator';
+import { IsString, IsEmail, MinLength, MaxLength, Matches, IsOptional, IsIn, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { RolUsuario } from '../../enums/estados.enum';
+import { NOMBRE_REGEX ,MENSAJES_VALIDACION} from '../../common/constants/regex.constants';
 export class CreateUsuarioDto {
 
     @ApiProperty({
@@ -11,9 +13,7 @@ export class CreateUsuarioDto {
     @IsString({ message: 'El nombre debe ser texto' })
     @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres' })
     @MaxLength(50, { message: 'El nombre no puede exceder 50 caracteres' })
-    @Matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/, { 
-    message: 'El nombre solo puede contener letras y espacios' 
-})
+    @Matches(NOMBRE_REGEX, {message: MENSAJES_VALIDACION.NOMBRE_SIN_ESPECIALES})
     nombre_usuario: string;
 
 
@@ -41,16 +41,8 @@ export class CreateUsuarioDto {
 })
     contraseña: string;
 
-    @ApiProperty({
-    example: 'admin',
-    description: 'Rol del usuario',
-    enum: ['admin', 'usuario', 'gerente', 'supervisor']
-  })
+    @ApiProperty({ example: 'admin', description: 'Rol del usuario', enum: RolUsuario })
     @IsString({ message: 'El rol debe ser texto' })
-    @IsIn(['admin', 'user'], { 
-    message: 'Rol debe ser: admin o user.' 
-})
-
-
+    @IsEnum(RolUsuario, { message: `El rol debe ser uno de los siguientes: "admin" , "usuario"` })
 rol: string;
 }

@@ -3,6 +3,8 @@ import { TareasService } from './tareas.service';
 import { CreateTareaDto } from './dto/create-tarea.dto';
 import { UpdateTareaDto } from './dto/update-tarea.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from '@nestjs/swagger';
+import { EstadoTarea } from 'src/enums/estados.enum';
+import { PrioridadTarea } from 'src/enums/prioridades.enum';
 
 @ApiTags('Tareas')
 @Controller('tareas')
@@ -27,13 +29,13 @@ export class TareasController {
     name: 'estado',
     required: false,          
     description: 'Filtrar por estado de la tarea',
-    enum: ['pendiente', 'en_progreso', 'completo']
+    enum: EstadoTarea
   })
   @ApiQuery({
     name: 'prioridad',
     required: false,           
     description: 'Filtrar por prioridad de la tarea',
-    enum: ['baja', 'media', 'alta', 'urgente']
+    enum: PrioridadTarea
   })
   findAll(
     @Query('estado') estado?: string,
